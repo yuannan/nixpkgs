@@ -120,10 +120,10 @@ goBuild (finalAttrs: {
   version = "0.9.3";
 
   src = fetchFromGitHub {
-    owner = "ollama";
-    repo = "ollama";
+    owner = "rjmalagon";
+    repo = "ollama-linux-amd-apu";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-bAxvlFeCxrxE8PuLbsjAwJYDeZfKb8BDuGBgX8uMgr8=";
+    hash = "sha256-h/VT/anJRmVRnD+n89/KkSiMy5Ft9N9YmjAesUBPpNo=";
     fetchSubmodules = true;
   };
 
