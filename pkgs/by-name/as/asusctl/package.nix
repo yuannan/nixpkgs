@@ -95,6 +95,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   doInstallCheck = true;
 
   postInstall = ''
+    cp ${./aura_support.ron} $out/share/asusd/aura_support.ron
+
     make prefix=$out install-data
 
     patchelf $out/bin/rog-control-center \
