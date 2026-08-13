@@ -9,13 +9,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "purpur";
-  version = "1.21.10r2535";
+  version = "26.2r2620";
 
   src = fetchurl {
     url = "https://api.purpurmc.org/v2/purpur/${
       builtins.replaceStrings [ "r" ] [ "/" ] finalAttrs.version
     }/download";
-    sha256 = "sha256-QVl4Nnewi2OVeC5hUMsoZGxw7ZiLeUjAngGqWl6Q9Ug=";
+
+    sha256 = "sha256-IQA6i/GAhVv4s83XIS1rb/dvBt5dy6hHQMPtQzumw00=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
@@ -46,7 +47,9 @@ stdenv.mkDerivation (finalAttrs: {
     sourceProvenance = with lib.sourceTypes; [ binaryBytecode ];
     license = lib.licenses.mit;
     platforms = lib.platforms.unix;
-    maintainers = [ ];
+    maintainers = with lib.maintainers; [
+      yuannan
+    ];
     mainProgram = "minecraft-server";
   };
 })
