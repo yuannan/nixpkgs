@@ -98,6 +98,11 @@ let
             tag = version;
             hash = "sha256-ZYEjT/yShfA4+zpbGOtaFOx1nSSOWPtMvskPhHv3c9U=";
           };
+
+          postPatch = ''
+            substituteInPlace py_ext/setup.py \
+              --replace-fail "0.2.0" "${version}"
+          '';
         }
       );
     };
@@ -107,12 +112,12 @@ in
 # Note: when upgrading this package, please run the list-missing-tools.sh script as described below!
 python.pkgs.buildPythonApplication rec {
   pname = "diffoscope";
-  version = "325";
+  version = "326";
   pyproject = true;
 
   src = fetchurl {
     url = "https://diffoscope.org/archive/diffoscope-${version}.tar.bz2";
-    hash = "sha256-z8mdVWYo/UHfNIQy/XSDYSMAytIwXk/R3FRm4IsikIc=";
+    hash = "sha256-Km0CvLx8BQ44Nwzxd9kHVFgVOnWPc+vly3ThcENGMOQ=";
   };
 
   outputs = [
@@ -121,15 +126,13 @@ python.pkgs.buildPythonApplication rec {
   ];
 
   patches = [
+    ./androguard-4.1.4.patch
     ./ignore_links.patch
   ];
 
   postPatch = ''
     # When generating manpage, use the installed version
     substituteInPlace doc/Makefile --replace-fail "../bin" "$out/bin"
-
-    substituteInPlace diffoscope/comparators/apk.py \
-      --replace-fail "from androguard.core.bytecodes import apk" "from androguard.core import apk"
   '';
 
   nativeBuildInputs = [
@@ -327,12 +330,12 @@ python.pkgs.buildPythonApplication rec {
   passthru = {
     updateScript = writeScript "update-diffoscope" ''
       #!/usr/bin/env nix-shell
-      #!nix-shell -i bash -p curl pcre common-updater-scripts
+      #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
       set -eu -o pipefail
 
       # Expect the text in format of "Latest release: 198 (31 Dec 2021)"'.
-      newVersion="$(curl -s https://diffoscope.org/ | pcregrep -o1 'Latest release: ([0-9]+)')"
+      newVersion="$(curl -s https://diffoscope.org/ | pcre2grep -o1 'Latest release: ([0-9]+)')"
       update-source-version ${pname} "$newVersion"
     '';
   };
