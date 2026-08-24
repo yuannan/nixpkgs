@@ -350,7 +350,9 @@
   ./programs/tsm-client.nix
   ./programs/turbovnc.nix
   ./programs/udevil.nix
+  ./programs/upki.nix
   ./programs/usbtop.nix
+  ./programs/vellum.nix
   ./programs/vim.nix
   ./programs/virt-manager.nix
   ./programs/vivid.nix
@@ -522,6 +524,7 @@
   ./services/continuous-integration/buildbot/master.nix
   ./services/continuous-integration/buildbot/worker.nix
   ./services/continuous-integration/buildkite-agents.nix
+  ./services/continuous-integration/forgejo-runner.nix
   ./services/continuous-integration/gitea-actions-runner.nix
   ./services/continuous-integration/github-runners.nix
   ./services/continuous-integration/gitlab-runner/runner.nix
@@ -683,6 +686,7 @@
   ./services/hardware/bolt.nix
   ./services/hardware/brltty.nix
   ./services/hardware/buffyboard.nix
+  ./services/hardware/cardwired.nix
   ./services/hardware/ddccontrol.nix
   ./services/hardware/deepcool-digital-linux.nix
   ./services/hardware/dell-bios-fan-control.nix
@@ -779,6 +783,7 @@
   ./services/logging/syslog-ng.nix
   ./services/logging/syslogd.nix
   ./services/logging/SystemdJournal2Gelf.nix
+  ./services/logging/udp514-journal.nix
   ./services/logging/ulogd.nix
   ./services/logging/vector.nix
   ./services/mail/automx2.nix
@@ -801,7 +806,6 @@
   ./services/mail/offlineimap.nix
   ./services/mail/opendkim.nix
   ./services/mail/opensmtpd.nix
-  ./services/mail/pfix-srsd.nix
   ./services/mail/postfix-tlspol.nix
   ./services/mail/postfix.nix
   ./services/mail/postgrey.nix
@@ -1292,6 +1296,7 @@
   ./services/networking/knot-resolver.nix
   ./services/networking/knot.nix
   ./services/networking/kresd.nix
+  ./services/networking/krill.nix
   ./services/networking/lambdabot.nix
   ./services/networking/legit.nix
   ./services/networking/libreswan.nix
@@ -1315,6 +1320,7 @@
   ./services/networking/mmsd.nix
   ./services/networking/modemmanager.nix
   ./services/networking/monero.nix
+  ./services/networking/moonshine.nix
   ./services/networking/mosquitto.nix
   ./services/networking/mozillavpn.nix
   ./services/networking/mptcpd.nix
@@ -1570,6 +1576,7 @@
   ./services/security/physlock.nix
   ./services/security/pocket-id.nix
   ./services/security/reaction.nix
+  ./services/security/rosec.nix
   ./services/security/shibboleth-sp.nix
   ./services/security/sks.nix
   ./services/security/spire/agent.nix
@@ -1715,6 +1722,7 @@
   ./services/web-apps/haven.nix
   ./services/web-apps/healthchecks.nix
   ./services/web-apps/hedgedoc.nix
+  ./services/web-apps/hister.nix
   ./services/web-apps/hledger-web.nix
   ./services/web-apps/homebox.nix
   ./services/web-apps/homer.nix
