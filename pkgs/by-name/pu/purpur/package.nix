@@ -5,7 +5,7 @@
   nixosTests,
   jre_headless,
   makeWrapper,
-  udev
+  udev,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -49,9 +49,6 @@ stdenv.mkDerivation (finalAttrs: {
     sourceProvenance = with lib.sourceTypes; [ binaryBytecode ];
     license = lib.licenses.mit;
     platforms = lib.platforms.unix;
-    maintainers = with lib.maintainers; [
-      yuannan
-    ];
     maintainers = with lib.maintainers; [
       yuannan
     ];
