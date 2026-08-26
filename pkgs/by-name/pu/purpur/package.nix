@@ -5,7 +5,7 @@
   nixosTests,
   jre_headless,
   makeWrapper,
-  udev
+  udev,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
