@@ -25,16 +25,16 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # NOTE: when updating this to a new non-patch version, please also try to
   # update the plugins. Plugins only work if they are compiled for the same
   # major/minor version.
-  version = "0.115.0";
+  version = "0.116.1";
 
   src = fetchFromGitHub {
     owner = "nushell";
     repo = "nushell";
     tag = finalAttrs.version;
-    hash = "sha256-9QzdbNP8S9TmW8MRUVqvVRAi6dxTP3T2WY3+wuypsck=";
+    hash = "sha256-b62ICCP7Li88obcju4xBNVw7D+6TtRURrOUvzqcjHis=";
   };
 
-  cargoHash = "sha256-Vby1x3/W1IUs73bFz/+AZpn4IepWScqrGp0tXlF6an4=";
+  cargoHash = "sha256-+81FRwTlR5NSJuoaH7KCK6Qy1DiU5/JKNqfaAhZmMes=";
 
   nativeBuildInputs = [
     pkg-config
@@ -114,7 +114,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     updateScript = nix-update-script { };
 
     withPlugins = plugins: callPackage ./with-plugins.nix { inherit plugins; };
-    tests.withPlugins = callPackage ./plugins/test-with-plugins.nix { };
+    tests = {
+      withPlugins = callPackage ./plugins/test-with-plugins.nix { };
+      pluginCompat = callPackage ./plugins/test-plugin-compat.nix { };
+    };
   };
 
   meta = {
@@ -125,6 +128,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
       johntitor
       joaquintrinanes
       ryan4yin
+      koffydrop
     ];
     mainProgram = "nu";
   };

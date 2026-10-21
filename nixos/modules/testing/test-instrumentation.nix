@@ -106,12 +106,6 @@ in
 
     assertions = [
       {
-        assertion = cfg.initrdBackdoor -> config.boot.initrd.systemd.enable;
-        message = ''
-          `testing.initrdBackdoor` requires `boot.initrd.systemd.enable` to be enabled.
-        '';
-      }
-      {
         assertion = config.boot.isContainer -> !cfg.backdoor;
         message = ''
           `testing.backdoor` uses virtio console, which does not work with
@@ -233,11 +227,11 @@ in
     environment.systemPackages = [ pkgs.xwininfo ];
 
     # Log everything to the serial console.
-    services.journald.extraConfig = ''
-      ForwardToConsole=yes
-      TTYPath=/dev/${qemu-common.qemuSerialDevice}
-      MaxLevelConsole=debug
-    '';
+    services.journald.settings.Journal = {
+      ForwardToConsole = true;
+      TTYPath = "/dev/${qemu-common.qemuSerialDevice}";
+      MaxLevelConsole = "debug";
+    };
 
     systemd.settings.Manager = managerSettings;
     systemd.user.settings.Manager = {

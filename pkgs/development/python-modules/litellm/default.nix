@@ -13,6 +13,7 @@
   buildPythonPackage,
   click,
   cryptography,
+  expression,
   fastapi,
   fastapi-sso,
   fastuuid,
@@ -38,6 +39,7 @@
   polars,
   prisma,
   prometheus-client,
+  psycopg,
   pydantic,
   pydantic-settings,
   pyjwt,
@@ -55,6 +57,7 @@
   soundfile,
   tiktoken,
   tokenizers,
+  tomlkit,
   uvicorn,
   uvloop,
   websockets,
@@ -64,14 +67,14 @@
 
 buildPythonPackage rec {
   pname = "litellm";
-  version = "1.97.0";
+  version = "1.102.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "BerriAI";
     repo = "litellm";
     tag = "v${version}";
-    hash = "sha256-9nVVXRvtfxntAgSetCy66jfDpunR12DEIoQKAjSZn/4=";
+    hash = "sha256-Mb5K0AmvS8N+Bya+i3BZTQtu4BWYcdgk3UieJ8xET7w=";
   };
 
   nativeBuildInputs = with rustPlatform; [
@@ -88,16 +91,17 @@ buildPythonPackage rec {
       src
       cargoRoot
       ;
-    hash = "sha256-iwgIclG8BGeHDNtm686w2Rxe+9ddvBrz1sMfOBeuKK0=";
+    hash = "sha256-zbDWVIg0ly+VP9t9eA/md0CxUKCKBJWHLgG13EUZ4rY=";
   };
 
   postPatch = ''
     substituteInPlace pyproject.toml \
-      --replace-fail "maturin==1.9.4" "maturin==${maturin.version}"
+      --replace-fail "maturin==1.15.0" "maturin==${maturin.version}"
   '';
 
   dependencies = [
     aiohttp
+    boto3
     click
     fastuuid
     httpx
@@ -118,8 +122,8 @@ buildPythonPackage rec {
       azure-identity
       azure-storage-blob
       backoff
-      boto3
       cryptography
+      expression
       fastapi
       fastapi-sso
       gunicorn
@@ -137,6 +141,7 @@ buildPythonPackage rec {
       rich
       rq
       soundfile
+      tomlkit
       uvloop
       uvicorn
       websockets
@@ -149,6 +154,7 @@ buildPythonPackage rec {
       google-cloud-iam
       google-cloud-kms
       prisma
+      psycopg
       # FIXME package redisvl
       resend
     ];
@@ -178,6 +184,7 @@ buildPythonPackage rec {
 
   pythonRelaxDeps = [
     "aiohttp"
+    "boto3"
     "click"
     "importlib-metadata"
     "jsonschema"
@@ -194,7 +201,7 @@ buildPythonPackage rec {
     updateScript = nix-update-script {
       extraArgs = [
         "--version-regex"
-        "v([0-9]+\\.[0-9]+\\.[0-9]+)"
+        "v([0-9]+\\.[0-9]+\\.[0-9]+)$"
       ];
     };
   };

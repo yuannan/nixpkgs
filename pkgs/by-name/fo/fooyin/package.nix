@@ -16,6 +16,10 @@
   libopenmpt,
   soundtouch,
   soxr,
+  libpulseaudio,
+  libprojectm,
+  libcdio,
+  libcdio-paranoia,
   game-music-emu,
   SDL2,
   icu,
@@ -26,7 +30,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.11.1";
+  version = "0.13.1";
 
   __structuredAttrs = true;
 
@@ -34,7 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "fooyin";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-228hxjKkxE0ILzP8dnIS21R3AW9Y0+wutgcYlQdCgXc=";
+    hash = "sha256-HinvM2lB8CQhYNJjXt5ZVR2cw2hfVpKbtKG0BzmirCs=";
   };
 
   buildInputs = [
@@ -59,6 +63,10 @@ stdenv.mkDerivation (finalAttrs: {
     game-music-emu
     soundtouch
     soxr
+    libpulseaudio
+    libprojectm
+    libcdio
+    libcdio-paranoia
   ];
 
   nativeBuildInputs = [
@@ -85,7 +93,11 @@ stdenv.mkDerivation (finalAttrs: {
     downloadPage = "https://github.com/fooyin/fooyin";
     mainProgram = "fooyin";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ peterhoeg ];
+    maintainers = with lib.maintainers; [
+      peterhoeg
+      alden
+      keenanweaver
+    ];
     platforms = lib.platforms.linux;
   };
 })

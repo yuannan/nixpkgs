@@ -41,7 +41,7 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "huggingface-hub";
-  version = "1.27.0";
+  version = "1.30.0";
   pyproject = true;
   __structuredAttrs = true;
 
@@ -49,7 +49,7 @@ buildPythonPackage (finalAttrs: {
     owner = "huggingface";
     repo = "huggingface_hub";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-AJglCIJZPeabIjgx+qeEpKM2HhX2hr4xx4SWpghDrhE=";
+    hash = "sha256-43yZ9wOmCaGw8wcuD0j91kKYwzgf9xqSTabYJaA+tDg=";
   };
 
   build-system = [ setuptools ];
@@ -106,6 +106,11 @@ buildPythonPackage (finalAttrs: {
   versionCheckProgramArg = "version";
 
   pythonImportsCheck = [ "huggingface_hub" ];
+
+  passthru = {
+    # bulk updater uses wrong tag
+    skipBulkUpdate = true;
+  };
 
   meta = {
     description = "Download and publish models and other files on the huggingface.co hub";
