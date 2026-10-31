@@ -2828,6 +2828,8 @@ self: super: with self; {
 
   bytesize = toPythonModule (pkgs.libbytesize.override { python3Packages = self; });
 
+  bytestruct = callPackage ../development/python-modules/bytestruct { };
+
   bytewax = callPackage ../development/python-modules/bytewax { };
 
   cache = callPackage ../development/python-modules/cache { };
@@ -9212,8 +9214,6 @@ self: super: with self; {
 
   kconfiglib = callPackage ../development/python-modules/kconfiglib { };
 
-  kde-material-you-colors = callPackage ../development/python-modules/kde-material-you-colors { };
-
   kdl-py = callPackage ../development/python-modules/kdl-py { };
 
   keba-kecontact = callPackage ../development/python-modules/keba-kecontact { };
@@ -12339,6 +12339,8 @@ self: super: with self; {
   npyscreen = callPackage ../development/python-modules/npyscreen { };
 
   nrf-ota = callPackage ../development/python-modules/nrf-ota { };
+
+  nrf802154-sniffer = callPackage ../development/python-modules/nrf802154-sniffer { };
 
   nrgkick-api = callPackage ../development/python-modules/nrgkick-api { };
 
